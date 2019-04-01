@@ -7,7 +7,8 @@ var express = require('express'),
   bodyParser = require('body-parser');
 
 mongoose.Promise = global.Promise;
-mongoose.connect('mongodb://localhost/Eventsdb');
+// mongoose.connect('mongodb://localhost/Eventsdb');
+mongoose.connect(process.env.MONGOLAB_URI)
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
