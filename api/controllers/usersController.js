@@ -13,6 +13,10 @@ exports.get_all_users = function(req, res) {
 };
 
 exports.create_user = function(req, res) {
+  let temp_user = Users.findOne({email: req.body.email});
+  if (temp_user) {
+    return res.status(400).send('The email is already associated with an account');
+  }
   var new_user = new Users(req.body);
   new_user.save(function(err, user) {
     if (err) {
