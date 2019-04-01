@@ -20,5 +20,6 @@ module.exports = function(app) {
 
   app.route('/users/:userID')
     .get(users.read_user)
-    .put(users.update_user);
+    .put(users.update_user)
+    .delete(users.delete_user);
 };

@@ -39,3 +39,12 @@ exports.update_user = function(req, res) {
     res.json(user);
   });
 };
+
+  exports.delete_user = function(req, res) {
+    Users.remove({_id: req.params.userID}, function(err, user) {
+      if (err) {
+        res.send(err);
+      }
+      res.json({ message: 'User deleted' });
+    });
+};
