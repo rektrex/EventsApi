@@ -4,7 +4,7 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
 var eventSchema = new Schema({
-  title: String,
+  title: { type: String, unique: true },
   description: String,
   venue: String,
   startDate: Date,
