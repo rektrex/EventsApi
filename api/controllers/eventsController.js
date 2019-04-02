@@ -32,7 +32,7 @@ exports.read_event = function(req, res) {
 };
 
 exports.update_event = function(req, res) {
-  Events.findOneAndUpdate({_id: req.params.eventID}, req.body, {new: true}, function(err, event) {
+  Events.findOneAndUpdate({title: req.body.title}, req.body, {new: true}, function(err, event) {
     if (err) {
       res.send(err);
     }
@@ -41,12 +41,10 @@ exports.update_event = function(req, res) {
 };
 
 exports.delete_event = function(req, res) {
-  Events.remove({
-    _id: req.params.eventID
-  }, function(err, event) {
+  Events.findOneAndRemove({title: req.body.title}, function(err, event) {
     if (err) {
       res.send(err);
     }
-    res.json({ message: 'Event deleted' });
+    res.json({ message: 'Event deleted' })
   });
 };

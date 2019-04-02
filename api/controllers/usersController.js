@@ -45,11 +45,11 @@ exports.update_user = function(req, res) {
   });
 };
 
-  exports.delete_user = function(req, res) {
-    Users.findOneAndRemove({email: req.body.email}, function(err, user) {
-      if (err) {
-        res.send(err);
-      }
-      res.json({ message: 'User deleted' });
-    });
+exports.delete_user = function(req, res) {
+  Users.findOneAndRemove({email: req.body.email}, function(err, user) {
+    if (err) {
+      res.send(err);
+    }
+    res.json({ message: 'User deleted' });
+  });
 };
