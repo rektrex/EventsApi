@@ -22,4 +22,18 @@ var userSchema = new Schema({
   }
 });
 
+userSchema.pre('save', function(next) {
+  if (!user.isModified('password')) return next();
+
+  const user = this;
+
+  const bcrypt = require('bcrypt');
+  const saltRounds = 8;
+
+  bcrypt.hash(user.password, saltRounds, function(err, hash) {
+    user.password = hash;
+    next();
+  });
+});
+
 module.exports = mongoose.model('Users', userSchema);
