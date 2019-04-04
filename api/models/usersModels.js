@@ -23,7 +23,7 @@ var userSchema = new Schema({
 });
 
 userSchema.pre('save', function(next) {
-  if (!user.isModified('password')) return next();
+  if (user.isModified('password')) return next();
 
   const user = this;
 
