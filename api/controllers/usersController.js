@@ -28,19 +28,19 @@ exports.create_user = function(req, res) {
 };
 
 exports.read_user = function(req, res) {
-  var temp_pwd = req.body.password;
-  const bcrypt = require('bcrypt');
-  const saltRounds = 8;
-
-  bcrypt.hash(temp_pwd, saltRounds, function(err, hash) {
-    temp_pwd = hash;
-    Users.findOne({email: req.body.email, password: temp_pwd}, {_id: 0, email: 1, userType: 1}, function(err, user) {
-      if (err) {
+  Users.findOne({email: req.body.email}, function(err, user) {
+    if (err) {
+      res.send(err);
+    }
+    const bcrypt = require('bcrypt');
+    bcrypt.compare(req.body.password, user.password, function(err, res) {
+      if(res) {
+        res.json(user);
+      } else if(err) {
         res.send(err);
       }
-      res.json(user);
     });
-  })
+  });
 };
 
 exports.update_user = function(req, res) {
