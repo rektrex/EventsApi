@@ -27,19 +27,28 @@ exports.create_user = function(req, res) {
   });
 };
 
+// exports.read_user = function(req, res) {
+//   Users.findOne({email: req.body.email}, function(err, user) {
+//     if (err) {
+//       res.send(err);
+//     }
+//     const bcrypt = require('bcrypt');
+//     bcrypt.compare(req.body.password, user.password, function(err, res) {
+//       if(res) {
+//         res.json(user);
+//       } else if(err) {
+//         res.send(err);
+//       }
+//     });
+//   });
+// };
+
 exports.read_user = function(req, res) {
   Users.findOne({email: req.body.email}, function(err, user) {
-    if (err) {
+    if(err) {
       res.send(err);
     }
-    const bcrypt = require('bcrypt');
-    bcrypt.compare(req.body.password, user.password, function(err, res) {
-      if(res) {
-        res.json(user);
-      } else if(err) {
-        res.send(err);
-      }
-    });
+    res.json(user);
   });
 };
 
