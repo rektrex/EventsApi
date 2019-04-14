@@ -50,10 +50,10 @@ exports.read_user = function(req, res) {
     }
     const mUser = user.body;
     const bcrypt = require('bcrypt');
-    bcrypt.compare(req.body.password, mUser.password, function(err, res) {
-      if(res) {
+    bcrypt.compare(req.body.password, mUser.password, function(errp, resp) {
+      if(resp) {
         res.json(user);
-      } else if(err) {
+      } else if(errp) {
         res.send(err)
       }
     });
