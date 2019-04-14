@@ -48,7 +48,15 @@ exports.read_user = function(req, res) {
     if(err) {
       res.send(err);
     }
-    res.json(user);
+    const mUser = user.body;
+    const bcrypt = require('bcrypt');
+    bcrypt.compare(req.body.password, mUser.password, function(err, res) {
+      if(res) {
+        res.json(user);
+      } else if(err) {
+        res.send(err)
+      }
+    });
   });
 };
 
