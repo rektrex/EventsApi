@@ -4,6 +4,7 @@ var express = require('express'),
   mongoose = require('mongoose'),
   Events = require('./api/models/eventsModels'),
   Users = require('./api/models/usersModels'),
+  Store = require('./api/models/storeModels')
   bodyParser = require('body-parser');
 
 mongoose.Promise = global.Promise;
