@@ -22,4 +22,15 @@ module.exports = function(app) {
     .get(users.read_user)
     .put(users.update_user)
     .delete(users.delete_user);
+
+  var store = require('../controllers/storeController')
+
+  app.route('/store')
+    .get(store.get_all_items)
+    .post(store.add_item);
+
+  app.route('/store/:storeID')
+    .get(store.read_item)
+    .put(store.update_item)
+    .delete(store.delete_item);
 };
