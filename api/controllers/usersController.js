@@ -34,14 +34,13 @@ exports.read_user = function(req, res) {
 
   bcrypt.hash(temp_pwd, saltRounds, function(err, hash) {
     temp_pwd = hash;
+    Users.findOne({email: req.body.email, password: temp_pwd}, {_id: 0, email: 1, userType: 1}, function(err, user) {
+      if (err) {
+        res.send(err);
+      }
+      res.json(user);
+    });
   })
-
-  Users.findOne({email: req.body.email, password: temp_pwd}, {_id: 0, email: 1, userType: 1}, function(err, user) {
-    if (err) {
-      res.send(err);
-    }
-    res.json(user);
-  });
 };
 
 exports.update_user = function(req, res) {
