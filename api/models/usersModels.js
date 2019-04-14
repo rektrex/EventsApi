@@ -23,9 +23,8 @@ var userSchema = new Schema({
 });
 
 userSchema.pre('save', function(next) {
-  if (user.isModified('password')) return next();
-
-  const user = this;
+  var user = this;
+  if (!user.isModified('password')) return next();
 
   const bcrypt = require('bcrypt');
   const saltRounds = 8;

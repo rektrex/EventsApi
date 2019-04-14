@@ -13,7 +13,7 @@ exports.get_all_users = function(req, res) {
 };
 
 exports.create_user = function(req, res) {
-  Users.findOne({email: req.body.email}, {_id: 0, email: 1}, function(err, user) {
+  Users.findOne({email: req.body.email}, function(err, user) {
     if (err) {
       return res.status(400).send('This email is already associated with an account');
     }
