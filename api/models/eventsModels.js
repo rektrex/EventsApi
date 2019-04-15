@@ -15,7 +15,7 @@ var eventSchema = new Schema({
 });
 
 eventSchema.post('findOneAndUpdate', function(result) {
-  this.constructor.findOneAndRemove({flags: 3});
+  result.constructor.findOneAndRemove({flags: { $gt: 2 }});
 });
 
 module.exports = mongoose.model('Events', eventSchema);
