@@ -14,4 +14,8 @@ var eventSchema = new Schema({
   flags: { type: Number, default: 0 } // number of times the event has been flagged
 });
 
+eventSchema.post('findOneAndUpdate', function(result) {
+  this.constructor.findOneAndRemove({flags: 3});
+});
+
 module.exports = mongoose.model('Events', eventSchema);
