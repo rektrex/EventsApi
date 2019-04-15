@@ -15,6 +15,7 @@ var eventSchema = new Schema({
 });
 
 eventSchema.post('findOneAndUpdate', function(result) {
+  console.log("post findOneAndUpdate hook triggered")
   var events = require('../controllers/eventsController');
   events.update_post_hook();
 });
