@@ -15,7 +15,7 @@ var eventSchema = new Schema({
 });
 
 eventSchema.post('findOneAndUpdate', function(result) {
-  result.constructor.findOneAndRemove({flags: { $gt: 2 }});
+  this.prototype.deleteMany({flags: { $gt: 2 }}, callback);
 });
 
 module.exports = mongoose.model('Events', eventSchema);
