@@ -50,8 +50,7 @@ exports.delete_event = function(req, res) {
 };
 
 exports.update_post_hook = function() {
-  console.log("controller post hook called")
-  Events.deleteMany({flags: 3 }, function(err) {
+  Events.deleteMany({flags: { $gte: 3 } }, function(err) {
     if (err) {
       res.send(err);
     }
