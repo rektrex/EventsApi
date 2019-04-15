@@ -19,6 +19,7 @@ var userSchema = new Schema({
   userType: {
     type: Number, // root:0, verified:1, others:2
     required: true,
+    default: 2
   }
 });
 
