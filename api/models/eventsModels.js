@@ -15,7 +15,7 @@ var eventSchema = new Schema({
 });
 
 eventSchema.post('findOneAndUpdate', function(result) {
-  this.prototype.deleteMany({flags: { $gt: 2 }}, function(err, suc) {
+  Events.deleteMany({flags: { $gt: 2 }}, function(err, suc) {
     if(err) {
       res.send(err);
     }
