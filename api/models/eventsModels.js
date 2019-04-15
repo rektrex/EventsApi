@@ -15,11 +15,8 @@ var eventSchema = new Schema({
 });
 
 eventSchema.post('findOneAndUpdate', function(result) {
-  Events.deleteMany({flags: { $gt: 2 }}, function(err, suc) {
-    if(err) {
-      res.send(err);
-    }
-  });
+  var events = require('../controllers/eventsController');
+  events.update_post_hook();
 });
 
 module.exports = mongoose.model('Events', eventSchema);

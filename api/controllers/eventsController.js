@@ -48,3 +48,11 @@ exports.delete_event = function(req, res) {
     res.json({ message: 'Event deleted' })
   });
 };
+
+exports.update_post_hook = function() {
+  Events.deleteMany({flags: { $gt: 2 }, function(err) {
+    if (err) {
+      res.send(err);
+    }
+  }});
+};
